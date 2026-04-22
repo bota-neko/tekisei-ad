@@ -15,32 +15,39 @@ export default function Explanation() {
       transition={{ duration: 0.5 }}
       style={{ marginBottom: '2rem' }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <div style={{ background: '#eff6ff', padding: '0.5rem', borderRadius: '10px' }}>
             <Info size={20} style={{ color: '#3b82f6' }} />
           </div>
-          <div>
-            <h2 style={{ fontSize: '1.1rem', color: '#1e293b', marginBottom: '0.1rem' }}>適正広告費を計算する</h2>
-            <p style={{ fontSize: '0.8rem', color: '#64748b' }}>3ステップの質問に答えるだけで、あなたのビジネスの限界CPAを算出します。</p>
-          </div>
+          <h2 style={{ fontSize: '1.1rem', color: '#1e293b', margin: 0 }}>適正広告費を計算する</h2>
         </div>
-        <button 
-          onClick={() => setIsOpen(!isOpen)}
-          style={{ 
-            background: 'none', 
-            border: 'none', 
-            cursor: 'pointer', 
-            color: '#3b82f6',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.3rem',
-            fontSize: '0.85rem',
-            fontWeight: 600
-          }}
-        >
-          {isOpen ? <><ChevronUp size={16} /> 閉じる</> : <><ChevronDown size={16} /> 仕組みを見る</>}
-        </button>
+        
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+          <p style={{ fontSize: '0.85rem', color: '#64748b', margin: 0, flex: 1, minWidth: '240px', lineHeight: 1.5 }}>
+            3ステップの質問に答えるだけで、あなたのビジネスの限界CPA（1人あたりに使える広告費）を算出します。
+          </p>
+          <button 
+            onClick={() => setIsOpen(!isOpen)}
+            style={{ 
+              background: '#f1f5f9', 
+              border: 'none', 
+              cursor: 'pointer', 
+              color: '#3b82f6',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.3rem',
+              fontSize: '0.8rem',
+              fontWeight: 700,
+              padding: '0.4rem 0.8rem',
+              borderRadius: '8px',
+              transition: 'all 0.2s',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            {isOpen ? <><ChevronUp size={14} /> 閉じる</> : <><ChevronDown size={14} /> 仕組みを見る</>}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
