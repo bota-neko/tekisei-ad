@@ -114,6 +114,33 @@ export default function ResultCard({ initialInput, onReset }: Props) {
               広告費を払った後、あなたのポケットに残るお金の予想です。
             </p>
           </section>
+
+          {/* 計算の仕組み（セルフエクスプラナトリー） */}
+          <section style={{ borderTop: '1px solid #f1f5f9', paddingTop: '1.5rem' }}>
+            <p style={{ fontSize: '0.85rem', fontWeight: 700, color: '#475569', marginBottom: '1rem' }}>💡 計算の内訳（1件あたり）</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.8rem', color: '#64748b' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>1件売れた時の粗利:</span>
+                <span style={{ fontWeight: 600, color: '#1e293b' }}>{formatNumber(result.profitPerSale)}円</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span>手元に残す分 ({data.profitRetention}%):</span>
+                <span style={{ fontWeight: 600, color: '#059669' }}>- {formatNumber(Math.floor(result.profitPerSale * data.profitRetention / 100))}円</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.5rem', borderBottom: '1px solid #f1f5f9' }}>
+                <span>広告に使える分:</span>
+                <span style={{ fontWeight: 600, color: '#3b82f6' }}>= {formatNumber(result.profitPerSale - Math.floor(result.profitPerSale * data.profitRetention / 100))}円</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '0.25rem' }}>
+                <span>成約率 ({data.conversionRate}%):</span>
+                <span style={{ fontWeight: 600 }}>× {data.conversionRate}%</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: '#1e3a8a', fontWeight: 800, fontSize: '0.9rem', marginTop: '0.25rem' }}>
+                <span>1人あたり広告費 (CPA):</span>
+                <span>{formatNumber(result.costPerLead)}円</span>
+              </div>
+            </div>
+          </section>
         </div>
 
         {/* 数値の調整セクション */}
