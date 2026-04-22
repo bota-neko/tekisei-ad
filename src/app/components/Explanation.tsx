@@ -16,38 +16,39 @@ export default function Explanation() {
       style={{ marginBottom: '2rem' }}
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ background: '#eff6ff', padding: '0.5rem', borderRadius: '10px' }}>
-            <Info size={20} style={{ color: '#3b82f6' }} />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div style={{ background: '#eff6ff', padding: '0.4rem', borderRadius: '8px' }}>
+              <Info size={18} style={{ color: '#3b82f6' }} />
+            </div>
+            <h2 style={{ fontSize: '1.05rem', color: '#1e293b', margin: 0, fontWeight: 700 }}>適正広告費を計算する</h2>
           </div>
-          <h2 style={{ fontSize: '1.1rem', color: '#1e293b', margin: 0 }}>適正広告費を計算する</h2>
-        </div>
-        
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
-          <p style={{ fontSize: '0.85rem', color: '#64748b', margin: 0, flex: 1, minWidth: '240px', lineHeight: 1.5 }}>
-            3ステップの質問に答えるだけで、あなたのビジネスの限界CPA（1人あたりに使える広告費）を算出します。
-          </p>
           <button 
             onClick={() => setIsOpen(!isOpen)}
             style={{ 
-              background: '#f1f5f9', 
+              background: 'none', 
               border: 'none', 
               cursor: 'pointer', 
               color: '#3b82f6',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.3rem',
-              fontSize: '0.8rem',
+              gap: '0.2rem',
+              fontSize: '0.75rem',
               fontWeight: 700,
-              padding: '0.4rem 0.8rem',
-              borderRadius: '8px',
+              padding: '0.4rem 0.6rem',
+              borderRadius: '6px',
               transition: 'all 0.2s',
-              whiteSpace: 'nowrap'
+              whiteSpace: 'nowrap',
+              backgroundColor: '#f8fafc'
             }}
           >
-            {isOpen ? <><ChevronUp size={14} /> 閉じる</> : <><ChevronDown size={14} /> 仕組みを見る</>}
+            {isOpen ? <><ChevronUp size={14} /> 閉じる</> : <><ChevronDown size={14} /> 仕組み</>}
           </button>
         </div>
+        
+        <p style={{ fontSize: '0.82rem', color: '#64748b', margin: 0, lineHeight: 1.5 }}>
+          3ステップの質問に答えるだけで、あなたのビジネスの限界CPA（1人あたりに使える広告費）を算出します。
+        </p>
       </div>
 
       <AnimatePresence>
