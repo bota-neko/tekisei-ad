@@ -31,14 +31,14 @@ export default function ResultCard({ initialInput, onReset }: Props) {
         text: '成約率がかなり低いです。ページの改善や、商品の見直しが必要かもしれません。',
       });
     }
-    if (result.costPerLead < 100) {
+    if (result.limitCPA < 100) {
       list.push({
         id: 'cpa',
-        text: '1人あたりの広告費が非常に安いです。この金額で集客するのは難しい可能性があります。',
+        text: '1人獲得に使える広告費が非常に安いです。この金額で集客するのは難しい可能性があります。',
       });
     }
     return list;
-  }, [data.conversionRate, result.costPerLead]);
+  }, [data.conversionRate, result.limitCPA]);
 
   return (
     <motion.div
