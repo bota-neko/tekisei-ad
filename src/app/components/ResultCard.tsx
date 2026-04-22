@@ -53,39 +53,55 @@ export default function ResultCard({ initialInput, onReset }: Props) {
         </h2>
 
         <div style={{ display: 'grid', gap: '2rem' }}>
-          {/* 結果①：1人あたり広告費 */}
+          {/* 結果①：顧客獲得単価 (限界CPA) */}
           <section>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: '#64748b' }}>
               <TrendingUp size={18} />
-              <span style={{ fontWeight: 600 }}>1人あたり広告費 (限界CPA)</span>
+              <span style={{ fontWeight: 600 }}>1人獲得に使える広告費 (限界CPA)</span>
             </div>
             <p className="gradient-text" style={{ fontSize: '2.5rem', lineHeight: 1 }}>
-              {formatNumber(result.costPerLead)}<span style={{ fontSize: '1rem', marginLeft: '0.25rem' }}>円</span>
+              {formatNumber(result.limitCPA)}<span style={{ fontSize: '1rem', marginLeft: '0.25rem' }}>円</span>
             </p>
             <p style={{ fontSize: '0.85rem', color: '#475569', marginTop: '0.5rem' }}>
-              リピートや利益残しを考えた時、1人のお客さんを集めるのに使える金額です。
+              リピートを考えた生涯利益から、確保したい利益を引いた「1人を呼ぶために払える上限」です。
             </p>
           </section>
 
           <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0' }} />
 
-          {/* 結果②：必要な集客数 */}
+          {/* 結果②：クリック単価 (限界CPC) */}
+          <section>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: '#64748b' }}>
+              <RefreshCcw size={18} />
+              <span style={{ fontWeight: 600 }}>1クリックあたり上限 (限界CPC)</span>
+            </div>
+            <p style={{ fontSize: '2rem', fontWeight: 800, color: '#1e293b' }}>
+              {formatNumber(result.limitCPC)}<span style={{ fontSize: '1rem', marginLeft: '0.25rem' }}>円</span>
+            </p>
+            <p style={{ fontSize: '0.85rem', color: '#475569', marginTop: '0.5rem' }}>
+              広告のクリック単価がこの金額を下回れば、目標の利益を確保できます。
+            </p>
+          </section>
+
+          <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0' }} />
+
+          {/* 結果③：必要な集客数 */}
           <section>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: '#64748b' }}>
               <Users size={18} />
-              <span style={{ fontWeight: 600 }}>達成に必要な集客数 (月間)</span>
+              <span style={{ fontWeight: 600 }}>達成に必要なアクセス数 (月間)</span>
             </div>
             <p style={{ fontSize: '2rem', fontWeight: 800, color: '#1e293b' }}>
-              {formatNumber(result.requiredLeads)}<span style={{ fontSize: '1rem', marginLeft: '0.25rem' }}>名</span>
+              {formatNumber(result.requiredLeads)}<span style={{ fontSize: '1rem', marginLeft: '0.25rem' }}>回</span>
             </p>
             <p style={{ fontSize: '0.85rem', color: '#475569', marginTop: '0.5rem' }}>
-              この人数を集めれば、目標の売上に届きます。
+              目標売上のために、広告経由でサイトに呼ぶ必要がある人数（回数）です。
             </p>
           </section>
 
           <hr style={{ border: 'none', borderTop: '1px solid #e2e8f0' }} />
 
-          {/* 結果③：月の適正広告費 */}
+          {/* 結果④：月の適正広告費 */}
           <section>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: '#64748b' }}>
               <Wallet size={18} />
@@ -95,13 +111,13 @@ export default function ResultCard({ initialInput, onReset }: Props) {
               {formatNumber(result.adBudget)}<span style={{ fontSize: '1rem', marginLeft: '0.25rem' }}>円</span>
             </p>
             <p style={{ fontSize: '0.85rem', color: '#475569', marginTop: '0.5rem' }}>
-              手元に利益を残しつつ、成長するための「ちょうどいい」予算です。
+              手元に利益を残しつつ、成長を加速させるための最適な月間予算です。
             </p>
           </section>
 
           <hr style={{ border: 'none', borderTop: '2px solid #3b82f6', borderStyle: 'dashed' }} />
 
-          {/* 結果④：手元に残る利益 (納得感の源泉) */}
+          {/* 結果⑤：手元に残る利益 (納得感の源泉) */}
           <section style={{ background: '#f0f9ff', padding: '1.5rem', borderRadius: '20px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: '#0369a1' }}>
               <Coins size={18} />
@@ -111,33 +127,33 @@ export default function ResultCard({ initialInput, onReset }: Props) {
               {formatNumber(result.expectedAnnualNetProfit)}<span style={{ fontSize: '1rem', marginLeft: '0.25rem' }}>円</span>
             </p>
             <p style={{ fontSize: '0.85rem', color: '#0c4a6e', marginTop: '0.6rem', fontWeight: 600 }}>
-              広告費を払った後、あなたのポケットに残るお金の予想です。
+              広告費をすべて使った後、あなたのポケットに残る純利益の予想です。
             </p>
           </section>
 
           {/* 計算の仕組み（セルフエクスプラナトリー） */}
           <section style={{ borderTop: '1px solid #f1f5f9', paddingTop: '1.5rem' }}>
-            <p style={{ fontSize: '0.85rem', fontWeight: 700, color: '#475569', marginBottom: '1rem' }}>💡 計算の内訳（1件あたり）</p>
+            <p style={{ fontSize: '0.85rem', fontWeight: 700, color: '#475569', marginBottom: '1rem' }}>💡 計算の内訳（1人獲得あたり）</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.8rem', color: '#64748b' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>1件売れた時の粗利:</span>
-                <span style={{ fontWeight: 600, color: '#1e293b' }}>{formatNumber(result.profitPerSale)}円</span>
+                <span>生涯の粗利 (LTV):</span>
+                <span style={{ fontWeight: 600, color: '#1e293b' }}>{formatNumber(result.annualProfitPerCustomer)}円</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>手元に残す分 ({data.profitRetention}%):</span>
-                <span style={{ fontWeight: 600, color: '#059669' }}>- {formatNumber(Math.floor(result.profitPerSale * data.profitRetention / 100))}円</span>
+                <span>確保する利益 ({data.profitRetention}%):</span>
+                <span style={{ fontWeight: 600, color: '#059669' }}>- {formatNumber(Math.floor(result.annualProfitPerCustomer * data.profitRetention / 100))}円</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.5rem', borderBottom: '1px solid #f1f5f9' }}>
-                <span>広告に使える分:</span>
-                <span style={{ fontWeight: 600, color: '#3b82f6' }}>= {formatNumber(result.profitPerSale - Math.floor(result.profitPerSale * data.profitRetention / 100))}円</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.5rem', borderBottom: '1px solid #f1f5f9', color: '#1e3a8a', fontWeight: 800, fontSize: '0.9rem' }}>
+                <span>1人獲得に使える額 (CPA):</span>
+                <span>= {formatNumber(result.limitCPA)}円</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '0.25rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '0.5rem' }}>
                 <span>成約率 ({data.conversionRate}%):</span>
                 <span style={{ fontWeight: 600 }}>× {data.conversionRate}%</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: '#1e3a8a', fontWeight: 800, fontSize: '0.9rem', marginTop: '0.25rem' }}>
-                <span>1人あたり広告費 (CPA):</span>
-                <span>{formatNumber(result.costPerLead)}円</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 800, color: '#1e293b' }}>
+                <span>1クリックあたり上限 (CPC):</span>
+                <span>{formatNumber(result.limitCPC)}円</span>
               </div>
             </div>
           </section>
